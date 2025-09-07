@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mensaje Travieso Corregido</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+    #mensaje {
+      padding: 20px;
+      background-color: #f4f4f4;
+      border: 2px solid #333;
+      display: inline-block;
+      position: relative;
+    }
+    #boton {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      background-color: #007BFF;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <div id="mensaje">
+    <h2>Este es un mensaje divertido 😃</h2>
+    <p>El botón *Aceptar* no se deja atrapar fácilmente.</p>
+    <button id="boton">Aceptar</button>
+  </div>
+
+  <script>
+    const boton = document.getElementById("boton");
+    const mensaje = document.getElementById("mensaje");
+
+    // Función para mover el botón a una posición aleatoria
+    function moverBoton() {
+      const ancho = window.innerWidth - 120; // margen para que no se salga
+      const alto = window.innerHeight - 50;
+      const x = Math.random() * ancho;
+      const y = Math.random() * alto;
+      boton.style.left = x + "px";
+      boton.style.top = y + "px";
+    }
+
+    // Detectar intento de tocar/clicar en móvil o pasar el mouse en PC
+    boton.addEventListener("mouseover", moverBoton);   // PC
+    boton.addEventListener("touchstart", function(e) { // Celular
+      e.preventDefault(); // Evita que lo alcance a tocar
+      moverBoton();
+    });
+
+    // Después de 30 segundos desaparece el mensaje completo
+    setTimeout(() => {
+      mensaje.style.display = "none";
+    }, 30000);
+  </script>
+</body>
+</html>
